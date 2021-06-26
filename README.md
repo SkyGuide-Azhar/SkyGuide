@@ -10,13 +10,8 @@ The project consists of two parts:-
 -----------------------------------------------------------------------------------------------------------------------------------------
 
 Paricipants:
-  
-  1 - Sherif Gamal Abdelatef
-  
-  2 - Abdelrahman Farouk Sayed
-  
-  3 - Atiia Sayed Atiia
-  
-  4 - Ahmed Sedek Ali 
-  
-  5 - Ahmed Ragab Abdelkader 
+  - Sherif Gamal Abdellatif
+  - Abdelrahman Farouk Sayed
+  - Attia Ali Attia
+  - Ahmed Sedek Ali
+  - Ahmed Ragab Abdelkader
