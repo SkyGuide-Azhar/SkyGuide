@@ -9,7 +9,7 @@ The project consists of two parts:-
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 
-Paricipants:
+Participants:
   - Sherif Gamal Abdellatif
   - Abdelrahman Farouk Sayed
   - Attia Ali Attia
