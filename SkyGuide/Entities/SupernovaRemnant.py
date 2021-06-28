@@ -1,62 +1,60 @@
-from SkyGuide_DB.db import SkyGuideDBMember
+class SupernovaRemnant():
 
-class SupernovaRemnants(SkyGuideDBMember):
-
-    def _init_(self):
+    def __init__(self):
         pass
-        
-#___________________________________________________________________________________
     
-    def checkName(self,name):
-        isNameCorrect = False
-        
-        result = self._db.execute("select exists(select name from supernova_remnants where name like '{0}')".format(name)).fetchone()
-
-        if(result[0] == 1):
-            isNameCorrect = True
-        
-        return isNameCorrect
-
-#___________________________________________________________________________________
+    #------------------------------------------
     
-    def getByName(self, name):
-        srDict = {}
-        queryStr = "select * from supernova_remnants where name like '{0}'"
-        srList = self._db.execute(queryStr.format(name)).fetchone()
-        
-        srDict["Name"]                          = srList[0]
-        srDict["Right ascension in time"]       = srList[1]
-        srDict["Right ascension in degree"]     = srList[2]
-        srDict["Declination"]                   = srList[3]
-        srDict["First visible from earth"]      = srList[4]
-        srDict["Distance"]                      = srList[5]
-        srDict["Remnant"]                       = srList[6]
-
-        return srDict
+    __name = None
+    def SetName(self, name):
+            self.__name = name
+    def GetName(self):
+            return self.__name
     
-#___________________________________________________________________________________
+    #------------------------------------------
     
-    def addNew(self, srDict):
-        srAlreadyExists = self.checkName(srDict["name"])
-        
-        if(srAlreadyExists):
-            return "The provided supernova remnant already exits."
-
-        queryStr = "insert into supernova_remnants values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')"
-        
-        self._db.execute(queryStr.format(srDict["name"],
-                                         srDict["ra_time"],
-                                         srDict["ra_deg"],
-                                         srDict["dec_deg"],
-                                         srDict["fvfe"],
-                                         srDict["dist"],
-                                         srDict["remnant"]))
-        self._db.commit()
-        
-        return "The supernova remnant is added successfully."
+    __rightAscensionInTime = None
+    def SetRATime(self, rATime):
+            self.__rightAscensionInTime = rATime
+    def GetRATime(self):
+            return self.__rightAscensionInTime
     
+    #------------------------------------------
     
+    __rightAscensionInDegree = None
+    def SetRADeg(self, rADeg):
+            self.__rightAscensionInDegree = rADeg
+    def GetRADeg(self):
+            return self.__rightAscensionInDegree
     
+    #------------------------------------------
     
+    __declination = None
+    def SetDeclination(self, declination):
+            self.__declination = declination
+    def GetDeclination(self):
+            return self.__declination
     
+    #------------------------------------------
     
+    __firstVisibleFromEarth = None
+    def SetFVFE(self, fVFE):
+            self.__firstVisibleFromEarth = fVFE
+    def GetFVFE(self):
+            return self.__firstVisibleFromEarth
+    
+    #------------------------------------------
+    
+    __distance = None
+    def SetDistance(self, distance):
+            self.__distance = distance
+    def GetDistance(self):
+            return self.__distance
+    
+    #------------------------------------------
+    
+    __remnant = None
+    def SetRemnant(self, remnant):
+            self.__remnant = remnant
+    def GetRemnant(self):
+            return self.__remnant

@@ -1,79 +1,68 @@
-from SkyGuide_DB.db import SkyGuideDBMember
+class Nebula():
 
-class Nebulas(SkyGuideDBMember):
-
-    def _init_(self):
+    def __init__(self):
         pass
-        
-#___________________________________________________________________________________
     
-    def checkName(self,name):
-        isNameCorrect = False
-        
-        result = self._db.execute("select exists(select name from nebulas where name like '{0}')".format(name)).fetchone()  
-
-        if(result[0] == 1):
-            isNameCorrect = True
-        
-        return isNameCorrect
+    #------------------------------------------
     
-#___________________________________________________________________________________
+    __name = None
+    def SetName(self, name):
+            self.__name = name
+    def GetName(self):
+            return self.__name
     
-    def getByName(self, name):
-        nebulaDict = {}
-        queryStr = "SELECT * FROM nebulas INNER JOIN constellations on constellations.IAU_abbr = nebulas.con WHERE nebulas.name = '{0}'"
-        
-        nebulaList = self._db.execute(queryStr.format(name)).fetchone()
-
-        nebulaDict["Name"]                          = nebulaList[0]
-        nebulaDict["Right ascension in time"]       = nebulaList[1]
-        nebulaDict["Right ascension in degree"]     = nebulaList[2]
-        nebulaDict["Declination"]                   = nebulaList[3]
-        nebulaDict["Distance"]                      = nebulaList[4]
-        nebulaDict["Dimensions"]                    = nebulaList[5]
-        nebulaDict["Radius"]                        = nebulaList[6]
-        nebulaDict["Constellation"]                 = nebulaList[7]
-        
-        nebulaDict["--------- Constellation Info"]      = " ---------" # To seperate output for the user
-        
-        nebulaDict["Constellation name"]                = nebulaList[8]
-        nebulaDict["IAU Abbreviation"]                  = nebulaList[9]
-        nebulaDict["Right ascension start in time"]     = nebulaList[10]
-        nebulaDict["Right ascension start in degree"]   = nebulaList[11]
-        nebulaDict["Right ascension end in time"]       = nebulaList[12]
-        nebulaDict["Right ascension end in degree"]     = nebulaList[13]
-        nebulaDict["Declination start"]                 = nebulaList[14]
-        nebulaDict["Declination end"]                   = nebulaList[15]
-        nebulaDict["Genitive"]                          = nebulaList[16]
-        nebulaDict["Meaning"]                           = nebulaList[17]
-        nebulaDict["Brightest star"]                    = nebulaList[18]
+    #------------------------------------------
     
-        return nebulaDict
+    __rightAscensionInTime = None
+    def SetRATime(self, rATime):
+            self.__rightAscensionInTime = rATime
+    def GetRATime(self):
+            return self.__rightAscensionInTime
     
-#___________________________________________________________________________________
+    #------------------------------------------
     
-    def addNew(self, nebulaDict):
-        nebulaAlreadyExists = self.checkName(nebulaDict["name"])
-        
-        if(nebulaAlreadyExists):
-            return "The provided nebula already exits."
-
-        queryStr = "insert into nebulas values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')"
-        
-        self._db.execute(queryStr.format(nebulaDict["name"],
-                                         nebulaDict["ra_time"],
-                                         nebulaDict["ra_deg"],
-                                         nebulaDict["dec_deg"],
-                                         nebulaDict["dist"],
-                                         nebulaDict["dimensions"],
-                                         nebulaDict["radius"],
-                                         nebulaDict["con"]))
-        self._db.commit()
-        return "Nebula is added successfully."
-        
+    __rightAscensionInDegree = None
+    def SetRADeg(self, rADeg):
+            self.__rightAscensionInDegree = rADeg
+    def GetRADeg(self):
+            return self.__rightAscensionInDegree
     
+    #------------------------------------------
     
+    __declination = None
+    def SetDeclination(self, declination):
+            self.__declination = declination
+    def GetDeclination(self):
+            return self.__declination
     
+    #------------------------------------------
     
+    __distance = None
+    def SetDistance(self, distance):
+            self.__distance = distance
+    def GetDistance(self):
+            return self.__distance
     
+    #------------------------------------------
     
+    __dimensions = None
+    def SetDimensions(self, dimensions):
+            self.__dimensions = dimensions
+    def GetDimensions(self):
+            return self.__dimensions
+    
+    #------------------------------------------
+    
+    __radius = None
+    def SetRadius(self, radius):
+            self.__radius = radius
+    def GetRadius(self):
+            return self.__radius
+    
+    #------------------------------------------
+    
+    __constellation = None
+    def SetConstellation(self, constellation):
+            self.__constellation = constellation
+    def GetConstellation(self):
+            return self.__constellation

@@ -1,43 +1,100 @@
-from SkyGuide_DB.db import SkyGuideDBMember
-
-class SolarSys(SkyGuideDBMember):
+class SolarSysObj():  
     
-    def _init_(self):
+    def __init__(self):
         pass
-        
-#___________________________________________________________________________________
     
-    def checkName(self,name):
-        isNameCorrect = False
-        
-        self._cr.execute("select exists(select name from solar_sys where name = '{0}')".format(name))
-        result = self._cr.fetchone()        
-        
-        if(result[0] == 1):
-            isNameCorrect = True
-        
-        return isNameCorrect
+    #------------------------------------------
     
-#___________________________________________________________________________________
+    __name = None
+    def SetName(self, name):
+            self.__name = name
+    def GetName(self):
+            return self.__name
     
-    def getByName(self,name):
-        solarSysObjDict = {}
-        
-        self._cr.execute("select * from solar_sys where name = '{0}'".format(name))
-        solarSysObjList = self._cr.fetchone()
-        
-        solarSysObjDict["Name"]                        = solarSysObjList[0]
-        solarSysObjDict["Right ascension in time"]     = solarSysObjList[1]
-        solarSysObjDict["Right ascension in degree"]   = solarSysObjList[2]
-        solarSysObjDict["Declination"]                 = solarSysObjList[3]
-        solarSysObjDict["Constellation"]               = solarSysObjList[4]
-        solarSysObjDict["Magnitude"]                   = solarSysObjList[5]
-        solarSysObjDict["Distance"]                    = solarSysObjList[6]
-        solarSysObjDict["Diameter"]                    = solarSysObjList[7]
-        solarSysObjDict["Mass"]                        = solarSysObjList[8]
-        solarSysObjDict["Density"]                     = solarSysObjList[9]
-        solarSysObjDict["Escape velocity"]             = solarSysObjList[10]
-        solarSysObjDict["Sideral rotation"]            = solarSysObjList[11]
-        
-        return solarSysObjDict
+    #------------------------------------------
     
+    __rightAscensionInTime = None
+    def SetRATime(self, rATime):
+            self.__rightAscensionInTime = rATime
+    def GetRATime(self):
+            return self.__rightAscensionInTime
+    
+    #------------------------------------------
+    
+    __rightAscensionInDegree = None
+    def SetRADeg(self, rADeg):
+            self.__rightAscensionInDegree = rADeg
+    def GetRADeg(self):
+            return self.__rightAscensionInDegree
+    
+    #------------------------------------------
+    
+    __declination = None
+    def SetDeclination(self, declination):
+            self.__declination = declination
+    def GetDeclination(self):
+            return self.__declination
+    
+    #------------------------------------------
+    
+    __constellation = None
+    def SetConstellation(self, constellation):
+            self.__constellation = constellation
+    def GetConstellation(self):
+            return self.__constellation
+    
+    #------------------------------------------
+    
+    __magnitude = None
+    def SetMagnitude(self, magnitude):
+            self.__magnitude = magnitude
+    def GetMagnitude(self):
+            return self.__magnitude
+    
+    #------------------------------------------
+    
+    __distance = None
+    def SetDistance(self, distance):
+            self.__distance = distance
+    def GetDistance(self):
+            return self.__distance
+    
+    #------------------------------------------
+    
+    __diameter = None
+    def SetDiameter(self, diameter):
+            self.__diameter = diameter
+    def GetDiameter(self):
+            return self.__diameter
+    
+    #------------------------------------------
+    
+    __mass = None
+    def SetMass(self, mass):
+            self.__mass = mass
+    def GetMass(self):
+            return self.__mass
+    
+    #------------------------------------------
+    
+    __density = None
+    def SetDensity(self, density):
+            self.__density = density
+    def GetDensity(self):
+            return self.__density
+    
+    #------------------------------------------
+    
+    __escapeVelocity = None
+    def SetEscapeVelocity(self, escapeVelocity):
+            self.__escapeVelocity = escapeVelocity
+    def GetEscapeVelocity(self):
+            return self.__escapeVelocity
+    
+    #------------------------------------------
+    
+    __sideralRotation = None
+    def SetSideralRotation(self, sideralRotation):
+            self.__sideralRotation = sideralRotation
+    def GetSideralRotation(self):
+            return self.__sideralRotation

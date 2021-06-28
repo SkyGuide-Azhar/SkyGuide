@@ -5,7 +5,7 @@ from Entities.Constellation  import Constellation
 
 class StarsDA(SkyGuideDBAffiliate): 
     
-    def _init_(self):
+    def __init__(self):
         pass
         
 #___________________________________________________________________________________
