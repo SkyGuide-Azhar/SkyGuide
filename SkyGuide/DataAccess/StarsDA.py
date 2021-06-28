@@ -2,6 +2,7 @@ from DataAccess.DB_Affiliate import SkyGuideDBAffiliate
 from Entities.Star           import Star
 from Entities.Constellation  import Constellation
 
+
 class StarsDA(SkyGuideDBAffiliate): 
     
     def _init_(self):
