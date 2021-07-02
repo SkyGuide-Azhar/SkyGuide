@@ -3,7 +3,7 @@ class Star():
     def __init__(self):
         pass
     
-    #-------------------------------------------------------------
+#-------------------------------------------------------------
     
     __name = None
     def SetName(self, name):
@@ -11,7 +11,7 @@ class Star():
     def GetName(self):
         return self.__name
         
-    #-------------------------------------------------------------
+#-------------------------------------------------------------
     
     __rightAscensionInTime = None
     def SetRATime(self, raTime):
@@ -19,7 +19,7 @@ class Star():
     def GetRATime(self):
         return self.__rightAscensionInTime
         
-    #-------------------------------------------------------------
+#-------------------------------------------------------------
     
     __rightAscensionInDegree = None
     def SetRADeg(self, raDeg):
@@ -27,7 +27,7 @@ class Star():
     def GetRADeg(self):
         return self.__rightAscensionInDegree
         
-    #-------------------------------------------------------------
+#-------------------------------------------------------------
     
     __declination = None
     def SetDeclination(self, dec):
@@ -35,7 +35,7 @@ class Star():
     def GetDeclination(self):
         return self.__declination
         
-    #-------------------------------------------------------------
+#-------------------------------------------------------------
     
     __distance = None
     def SetDistance(self, dis):
@@ -43,7 +43,7 @@ class Star():
     def GetDistance(self):
         return self.__distance
         
-    #-------------------------------------------------------------
+#-------------------------------------------------------------
     
     __magnitude = None
     def SetMagnitude(self, mag):
@@ -51,7 +51,7 @@ class Star():
     def GetMagnitude(self):
         return self.__magnitude
         
-    #-------------------------------------------------------------
+#-------------------------------------------------------------
     
     __spectrum = None
     def SetSpectrum(self, spec):
@@ -59,7 +59,7 @@ class Star():
     def GetSpectrum(self):
         return self.__spectrum
         
-    #-------------------------------------------------------------
+#-------------------------------------------------------------
     
     __colorIndex = None
     def SetColorIdx(self, cIdx):
@@ -67,7 +67,7 @@ class Star():
     def GetColorIdx(self):
         return self.__colorIndex
         
-    #-------------------------------------------------------------
+#-------------------------------------------------------------
     
     __bayerName = None
     def SetBayerName(self, bayerName):
@@ -75,13 +75,11 @@ class Star():
     def GetBayerName(self):
         return self.__bayerName
         
-    #-------------------------------------------------------------
+#-------------------------------------------------------------
     
     __constellation = None
     def SetConstellation(self, con):
         self.__constellation = con
     def GetConstellation(self):
         return self.__constellation
-    
-    
     

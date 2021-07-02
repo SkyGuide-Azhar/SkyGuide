@@ -1,4 +1,4 @@
-from DataAccess.StarsDA import StarsDA
+from SGDB_Interface import SGDB_Interface
 
 from threading   import Event, Thread
 from time        import sleep
@@ -18,31 +18,8 @@ class StarLogic():
         pass
  
     def GetByName(self, name):
-        star, con = StarsDA().getByName(name)
-        returnStr = "{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n{6}\n{7}\n{8}\n{9}\n-------------------------------------".format(star.GetName(),
-                         star.GetRATime(),
-                         star.GetRADeg(),
-                         star.GetDeclination(),
-                         star.GetDistance(),
-                         star.GetMagnitude(),
-                         star.GetSpectrum(),
-                         star.GetColorIdx(),
-                         star.GetBayerName(),
-                         star.GetConstellation())
-
-        returnStr += "\n{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n{6}\n{7}\n{8}\n{9}\n{10}\n///////////////END-STAR//////////////////////////////////".format(con.GetName(),
-                          con.GetIAU(),
-                          con.GetRAStartTime(),
-                          con.GetRAStartDeg(),
-                          con.GetRAEndTime(),
-                          con.GetRAEndDeg(),
-                          con.GetDeclinationStart(),
-                          con.GetDeclinationEnd(),
-                          con.GetGenitive(),
-                          con.GetMeaning(),
-                          con.GetBrightestStar())
         
-        return returnStr
+        return SGDB_Interface().GetByName("stars", name)
         
 #-------------------------------------------------------------------------- 
 def NetCheck():
@@ -68,7 +45,7 @@ def IsDBConnectionOn():
     
     if(IsInternetOn):   
         if(not IsDBConnectionOn.NewState):
-            StarsDA().SGDB_Connect()
+            SGDB_Interface().SGDB_Connect()
             IsDBConnectionOn.NewState = True
     else:
         IsDBConnectionOn.NewState = False
@@ -96,6 +73,6 @@ if __name__ == "__main__":
         PrintByName(x)
     
     if(IsDBConnectionOn()):    
-        StarsDA().SGDB_Disconnect()
+        SGDB_Interface().SGDB_Disconnect()
     
     ExitEvent.set()

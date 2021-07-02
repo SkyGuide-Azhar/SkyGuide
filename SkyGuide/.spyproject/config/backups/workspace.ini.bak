@@ -4,9 +4,9 @@ save_data_on_exit = True
 save_history = True
 save_non_project_files = False
 project_type = empty-project-type
-recent_files = ['Entities\\Star.py', 'DataAccess\\DB_Connection.py', 'DataAccess\\StarsDA.py', 'DataAccess\\DB_Affiliate.py', 'Entities\\Nebula.py']
+recent_files = ['Entities\\Star.py', 'DataAccess\\DB_Connection.py', 'DataAccess\\StarsDA.py', 'DataAccess\\DB_Affiliate.py', 'Entities\\Nebula.py', 'DataAccess\\NebulasDA.py']
 
 [main]
 version = 0.2.0
-recent_files = ['DataAccess\\StarsDA.py', 'DataAccess\\ConstellationsDA.py', 'DataAccess\\NebulasDA.py', 'DataAccess\\SupernovaRemnantsDA.py', 'DataAccess\\SolarSysDA.py']
+recent_files = []
 

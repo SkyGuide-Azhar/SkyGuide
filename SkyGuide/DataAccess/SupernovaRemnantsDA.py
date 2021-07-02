@@ -1,14 +1,14 @@
-from DataAccess.DB_Affiliate    import SkyGuideDBAffiliate
+from DataAccess.DB_Affiliate    import DB_Affiliate
 from Entities.SupernovaRemnant  import SupernovaRemnant
 
-class SupernovaRemnants(SkyGuideDBAffiliate):
+class SupernovaRemnantsDA(DB_Affiliate):
 
     def _init_(self):
         pass
         
 #___________________________________________________________________________________
     
-    def checkName(self,name):
+    def CheckName(self,name):
         isNameCorrect = False      
         try:
             
@@ -24,7 +24,7 @@ class SupernovaRemnants(SkyGuideDBAffiliate):
     
 #___________________________________________________________________________________
     
-    def getByName(self, name):
+    def GetByName(self, name):
         supernovaRemnant = SupernovaRemnant()
         
         try:
@@ -45,11 +45,11 @@ class SupernovaRemnants(SkyGuideDBAffiliate):
         except:
             pass
 
-        return supernovaRemnant
+        return supernovaRemnant, None
     
 #___________________________________________________________________________________
     
-    def addNew(self, supernovaRemnant):   
+    def AddNew(self, supernovaRemnant):   
         srAlreadyExists = self.checkName(supernovaRemnant.GetName())
         
         if(srAlreadyExists):

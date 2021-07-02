@@ -1,15 +1,15 @@
-from DataAccess.DB_Affiliate import SkyGuideDBAffiliate
+from DataAccess.DB_Affiliate import DB_Affiliate
 from Entities.Nebula         import Nebula
 from Entities.Constellation  import Constellation
 
-class Nebulas(SkyGuideDBAffiliate):
+class NebulasDA(DB_Affiliate):
 
     def _init_(self):
         pass
         
 #___________________________________________________________________________________
     
-    def checkName(self, name):
+    def CheckName(self, name):
         isNameCorrect = False
         try:
             self._connection.cr.execute(f"select exists(select name from nebulas where name = '{name}')")
@@ -24,7 +24,7 @@ class Nebulas(SkyGuideDBAffiliate):
     
 #___________________________________________________________________________________
     
-    def getByName(self, name):
+    def GetByName(self, name):
         nebula = Nebula()
         con    = Constellation() 
         
@@ -66,7 +66,7 @@ class Nebulas(SkyGuideDBAffiliate):
     
 #___________________________________________________________________________________
     
-    def addNew(self, nebula):
+    def AddNew(self, nebula):
         nebulaAlreadyExists = self.checkName(nebula.GetName())
         
         if(nebulaAlreadyExists):

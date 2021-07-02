@@ -1,16 +1,16 @@
-from DataAccess.DB_Affiliate import SkyGuideDBAffiliate
+from DataAccess.DB_Affiliate import DB_Affiliate
 from Entities.Star           import Star
 from Entities.Constellation  import Constellation
 
 
-class StarsDA(SkyGuideDBAffiliate): 
+class StarsDA(DB_Affiliate): 
     
     def __init__(self):
         pass
         
 #___________________________________________________________________________________
     
-    def checkName(self,name):
+    def CheckName(self,name):
         isNameCorrect = False
         try: 
             self._connection.cr.execute(f"select exists(select name from stars where name = '{name}')")
@@ -25,7 +25,7 @@ class StarsDA(SkyGuideDBAffiliate):
     
 #___________________________________________________________________________________
     
-    def getByName(self, name):
+    def GetByName(self, name):
         star = Star()
         con  = Constellation() 
         
@@ -69,7 +69,7 @@ class StarsDA(SkyGuideDBAffiliate):
     
 #___________________________________________________________________________________
     
-    def addNew(self, star):
+    def AddNew(self, star):
         starAlreadyExists = self.checkName(star.GetName())
         
         if(starAlreadyExists):

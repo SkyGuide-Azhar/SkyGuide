@@ -1,16 +1,16 @@
-from DataAccess.DB_Connection import SkyGuideDBConnection
+from DataAccess.DB_Connection import DB_Connection
 
-class SkyGuideDBAffiliate:
+class DB_Affiliate:
 
-    _connection = SkyGuideDBConnection()
+    _connection = DB_Connection()
 
     def __init__(self):
           pass
 
 
-    def SGDB_Disconnect(self):
+    def Disconnect(self):
         self._connection.SGDB_Disconnect()
        
     
-    def SGDB_Connect(self):
+    def Connect(self):
         self._connection.SGDB_Connect()

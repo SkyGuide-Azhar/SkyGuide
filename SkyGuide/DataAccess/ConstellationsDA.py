@@ -1,14 +1,14 @@
-from DataAccess.DB_Affiliate import SkyGuideDBAffiliate
+from DataAccess.DB_Affiliate import DB_Affiliate
 from Entities.Constellation  import Constellation
 
-class Constellations(SkyGuideDBAffiliate):
+class ConstellationsDA(DB_Affiliate):
     
     def _init_(self):
         pass
         
 #___________________________________________________________________________________
     
-    def checkName(self, name):
+    def CheckName(self, name):
         isNameCorrect = False
         try:
             self._connection.cr.execute(f"select exists(select name from constellations where name = '{name}')")
@@ -23,7 +23,7 @@ class Constellations(SkyGuideDBAffiliate):
     
 #___________________________________________________________________________________
     
-    def checkIAU(self, IAU_abbr):
+    def CheckIAU(self, IAU_abbr):
         isIAU_abbrCorrect = False
         try:
             self._connection.cr.execute(f"select exists(select name from constellations where IAU_abbr = '{IAU_abbr}')")
@@ -38,7 +38,7 @@ class Constellations(SkyGuideDBAffiliate):
     
 #___________________________________________________________________________________
     
-    def getByName(self, name):
+    def GetByName(self, name):
         con = Constellation()
         
         try:
@@ -62,11 +62,11 @@ class Constellations(SkyGuideDBAffiliate):
         except:
             pass
         
-        return con
+        return con, None
     
 #___________________________________________________________________________________
     
-    def getByIAU(self, IAU_abbr):
+    def GetByIAU(self, IAU_abbr):
         con = Constellation()
         
         try:
@@ -90,6 +90,6 @@ class Constellations(SkyGuideDBAffiliate):
         except:
             pass
         
-        return con
+        return con, None
     
     

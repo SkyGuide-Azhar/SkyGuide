@@ -1,6 +1,6 @@
 import mysql.connector
 
-class SkyGuideDBConnection:
+class DB_Connection:
     
     def __init__(self):
         pass

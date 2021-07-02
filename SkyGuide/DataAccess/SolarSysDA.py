@@ -1,14 +1,14 @@
-from DataAccess.DB_Affiliate    import SkyGuideDBAffiliate
+from DataAccess.DB_Affiliate    import DB_Affiliate
 from Entities.SolarSysObj       import SolarSysObj
 
-class SolarSys(SkyGuideDBAffiliate):
+class SolarSysDA(DB_Affiliate):
     
     def _init_(self):
         pass
         
 #___________________________________________________________________________________
     
-    def checkName(self,name):
+    def CheckName(self,name):
         isNameCorrect = False
         try:
             self._connection.cr.execute(f"select exists(select name from solar_sys where name = '{name}')")
@@ -23,7 +23,7 @@ class SolarSys(SkyGuideDBAffiliate):
     
 #___________________________________________________________________________________
     
-    def getByName(self,name):
+    def GetByName(self,name):
         solarSysObj = SolarSysObj()
         
         try:
@@ -48,5 +48,5 @@ class SolarSys(SkyGuideDBAffiliate):
         except:
             pass
         
-        return solarSysObj
+        return solarSysObj, None
         
