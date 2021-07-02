@@ -1,75 +1,95 @@
-from SkyGuide_DB.db import SkyGuideDBMember
+from DataAccess.DB_Affiliate import SkyGuideDBAffiliate
+from Entities.Constellation  import Constellation
 
-class Constellations(SkyGuideDBMember):
+class Constellations(SkyGuideDBAffiliate):
     
     def _init_(self):
         pass
         
 #___________________________________________________________________________________
     
-    def checkName(self,name):
+    def checkName(self, name):
         isNameCorrect = False
-        
-        result = self._db.execute("select exists(select name from constellations where name = '{0}')".format(name)).fetchone()
-
-        if(result[0] == 1):
-            isNameCorrect = True
+        try:
+            self._connection.cr.execute(f"select exists(select name from constellations where name = '{name}')")
+            result = self._connection.cr.fetchone()  
+    
+            if(result[0] == 1):
+                isNameCorrect = True
+        except:
+            pass
         
         return isNameCorrect
     
 #___________________________________________________________________________________
     
-    def checkIAU(self,IAU_abbr):
+    def checkIAU(self, IAU_abbr):
         isIAU_abbrCorrect = False
-        
-        result = self._db.execute("select exists(select name from constellations where IAU_abbr = '{0}')".format(IAU_abbr)).fetchone()
-                
-        
-        if(result[0] == 1):
-            isIAU_abbrCorrect = True
+        try:
+            self._connection.cr.execute(f"select exists(select name from constellations where IAU_abbr = '{IAU_abbr}')")
+            result = self._connection.cr.fetchone()  
+    
+            if(result[0] == 1):
+                isIAU_abbrCorrect = True
+        except:
+            pass
         
         return isIAU_abbrCorrect
     
 #___________________________________________________________________________________
     
-    def getByName(self,name):
-        conDict = {}
+    def getByName(self, name):
+        con = Constellation()
         
-        conList = self._db.execute("select * from constellations where name = '{0}'".format(name)).fetchone()
+        try:
+            queryStr = f"select * from constellations where name = '{name}'"
+            
+            self._connection.cr.execute(queryStr)
+            conList =  self._connection.cr.fetchone()
+            
+            con.SetName(conList[0])
+            con.SetIAU(conList[1])
+            con.SetRAStartTime(conList[2])
+            con.SetRAStartDeg(conList[3])
+            con.SetRAEndTime(conList[4])
+            con.SetRAEndDeg(conList[5])
+            con.SetDeclinationStart(conList[6])
+            con.SetDeclinationEnd(conList[7])
+            con.SetGenitive(conList[8])
+            con.SetMeaning(conList[9])
+            con.SetBrightestStar(conList[10])
         
-        conDict["Name"]                              = conList[0]
-        conDict["IAU Abbreviation"]                  = conList[1]
-        conDict["Right ascension start in time"]     = conList[2]
-        conDict["Right ascension start in degree"]   = conList[3]
-        conDict["Right ascension end in time"]       = conList[4]
-        conDict["Right ascension end in degree"]     = conList[5]
-        conDict["Declination start"]                 = conList[6]
-        conDict["Declination end"]                   = conList[7]
-        conDict["Genitive"]                          = conList[8]
-        conDict["Meaning"]                           = conList[9]
-        conDict["Brightest star"]                    = conList[10]
-    
-        return conDict
+        except:
+            pass
+        
+        return con
     
 #___________________________________________________________________________________
     
-    def getByIAU(self,IAU_abbr):
-        conDict = {}
+    def getByIAU(self, IAU_abbr):
+        con = Constellation()
         
-        conList = self._db.execute("select * from constellations where IAU_abbr = '{0}'".format(IAU_abbr)).fetchone()
-    
-        conDict["Name"]                              = conList[0]
-        conDict["IAU Abbreviation"]                  = conList[1]
-        conDict["Right ascension start in time"]     = conList[2]
-        conDict["Right ascension start in degree"]   = conList[3]
-        conDict["Right ascension end in time"]       = conList[4]
-        conDict["Right ascension end in degree"]     = conList[5]
-        conDict["Declination start"]                 = conList[6]
-        conDict["Declination end"]                   = conList[7]
-        conDict["Genitive"]                          = conList[8]
-        conDict["Meaning"]                           = conList[9]
-        conDict["Brightest star"]                    = conList[10]
-    
-        return conDict
+        try:
+            queryStr = f"select * from constellations where IAU_abbr = '{IAU_abbr}'"
+            
+            self._connection.cr.execute(queryStr)
+            conList =  self._connection.cr.fetchone()
+            
+            con.SetName(conList[0])
+            con.SetIAU(conList[1])
+            con.SetRAStartTime(conList[2])
+            con.SetRAStartDeg(conList[3])
+            con.SetRAEndTime(conList[4])
+            con.SetRAEndDeg(conList[5])
+            con.SetDeclinationStart(conList[6])
+            con.SetDeclinationEnd(conList[7])
+            con.SetGenitive(conList[8])
+            con.SetMeaning(conList[9])
+            con.SetBrightestStar(conList[10])
+        
+        except:
+            pass
+        
+        return con
     
     

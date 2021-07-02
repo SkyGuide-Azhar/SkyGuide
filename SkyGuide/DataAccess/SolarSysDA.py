@@ -1,6 +1,7 @@
-from SkyGuide_DB.db import SkyGuideDBMember
+from DataAccess.DB_Affiliate    import SkyGuideDBAffiliate
+from Entities.SolarSysObj       import SolarSysObj
 
-class SolarSys(SkyGuideDBMember):
+class SolarSys(SkyGuideDBAffiliate):
     
     def _init_(self):
         pass
@@ -9,35 +10,43 @@ class SolarSys(SkyGuideDBMember):
     
     def checkName(self,name):
         isNameCorrect = False
-        
-        self._cr.execute("select exists(select name from solar_sys where name = '{0}')".format(name))
-        result = self._cr.fetchone()        
-        
-        if(result[0] == 1):
-            isNameCorrect = True
+        try:
+            self._connection.cr.execute(f"select exists(select name from solar_sys where name = '{name}')")
+            result = self._connection.cr.fetchone()        
+            
+            if(result[0] == 1):
+                isNameCorrect = True
+        except:
+            pass
         
         return isNameCorrect
     
 #___________________________________________________________________________________
     
     def getByName(self,name):
-        solarSysObjDict = {}
+        solarSysObj = SolarSysObj()
         
-        self._cr.execute("select * from solar_sys where name = '{0}'".format(name))
-        solarSysObjList = self._cr.fetchone()
+        try:
+            queryStr = f"select * from solar_sys where name = '{name}'"
+            
+            self._connection.cr.execute(queryStr)
+            solarSysObjList =  self._connection.cr.fetchone()
+            
+            solarSysObj.SetName(solarSysObjList[0])
+            solarSysObj.SetRATime(solarSysObjList[1])
+            solarSysObj.SetRADeg(solarSysObjList[2])
+            solarSysObj.SetDeclination(solarSysObjList[3])
+            solarSysObj.SetConstellation(solarSysObjList[4])
+            solarSysObj.SetMagnitude(solarSysObjList[5])
+            solarSysObj.SetDistance(solarSysObjList[6])
+            solarSysObj.SetDiameter(solarSysObjList[7])
+            solarSysObj.SetMass(solarSysObjList[8])
+            solarSysObj.SetDensity(solarSysObjList[9])
+            solarSysObj.SetEscapeVelocity(solarSysObjList[10])
+            solarSysObj.SetSideralRotation(solarSysObjList[11])
         
-        solarSysObjDict["Name"]                        = solarSysObjList[0]
-        solarSysObjDict["Right ascension in time"]     = solarSysObjList[1]
-        solarSysObjDict["Right ascension in degree"]   = solarSysObjList[2]
-        solarSysObjDict["Declination"]                 = solarSysObjList[3]
-        solarSysObjDict["Constellation"]               = solarSysObjList[4]
-        solarSysObjDict["Magnitude"]                   = solarSysObjList[5]
-        solarSysObjDict["Distance"]                    = solarSysObjList[6]
-        solarSysObjDict["Diameter"]                    = solarSysObjList[7]
-        solarSysObjDict["Mass"]                        = solarSysObjList[8]
-        solarSysObjDict["Density"]                     = solarSysObjList[9]
-        solarSysObjDict["Escape velocity"]             = solarSysObjList[10]
-        solarSysObjDict["Sideral rotation"]            = solarSysObjList[11]
+        except:
+            pass
         
-        return solarSysObjDict
-    
+        return solarSysObj
+        

@@ -1,6 +1,7 @@
-from SkyGuide_DB.db import SkyGuideDBMember
+from DataAccess.DB_Affiliate    import SkyGuideDBAffiliate
+from Entities.SupernovaRemnant  import SupernovaRemnant
 
-class SupernovaRemnants(SkyGuideDBMember):
+class SupernovaRemnants(SkyGuideDBAffiliate):
 
     def _init_(self):
         pass
@@ -8,55 +9,70 @@ class SupernovaRemnants(SkyGuideDBMember):
 #___________________________________________________________________________________
     
     def checkName(self,name):
-        isNameCorrect = False
-        
-        result = self._db.execute("select exists(select name from supernova_remnants where name like '{0}')".format(name)).fetchone()
-
-        if(result[0] == 1):
-            isNameCorrect = True
+        isNameCorrect = False      
+        try:
+            
+            self._connection.cr.execute(f"select exists(select name from supernova_remnants where name like '{name}')")
+            result = self._connection.cr.fetchone()  
+    
+            if(result[0] == 1):
+                isNameCorrect = True
+        except:
+            pass
         
         return isNameCorrect
-
+    
 #___________________________________________________________________________________
     
     def getByName(self, name):
-        srDict = {}
-        queryStr = "select * from supernova_remnants where name like '{0}'"
-        srList = self._db.execute(queryStr.format(name)).fetchone()
+        supernovaRemnant = SupernovaRemnant()
         
-        srDict["Name"]                          = srList[0]
-        srDict["Right ascension in time"]       = srList[1]
-        srDict["Right ascension in degree"]     = srList[2]
-        srDict["Declination"]                   = srList[3]
-        srDict["First visible from earth"]      = srList[4]
-        srDict["Distance"]                      = srList[5]
-        srDict["Remnant"]                       = srList[6]
+        try:
+            queryStr = f"select * from supernova_remnants where name like '{name}'"
+            
+            self._connection.cr.execute(queryStr)
+            srList =  self._connection.cr.fetchone()
+            
+            
+            supernovaRemnant.SetName(srList[0])
+            supernovaRemnant.SetRATime(srList[1])
+            supernovaRemnant.SetRADeg(srList[2])
+            supernovaRemnant.SetDeclination(srList[3])
+            supernovaRemnant.SetFVFE(srList[4])
+            supernovaRemnant.SetDistance(srList[5])
+            supernovaRemnant.SetRemnant(srList[6])
+        
+        except:
+            pass
 
-        return srDict
+        return supernovaRemnant
     
 #___________________________________________________________________________________
     
-    def addNew(self, srDict):
-        srAlreadyExists = self.checkName(srDict["name"])
+    def addNew(self, supernovaRemnant):   
+        srAlreadyExists = self.checkName(supernovaRemnant.GetName())
         
         if(srAlreadyExists):
             return "The provided supernova remnant already exits."
+        
+        try:
+            queryStr = "insert into supernova_remnants values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')"
+            
+            self._connection.cr.execute(queryStr.format(supernovaRemnant.GetName(),
+                                                        supernovaRemnant.GetRATime(),
+                                                        supernovaRemnant.GetRADeg(),
+                                                        supernovaRemnant.GetDeclination(),
+                                                        supernovaRemnant.GetFVFE(),
+                                                        supernovaRemnant.GetDistance(),
+                                                        supernovaRemnant.GetRemnant()))
+            
+            self._connection.db.commit()
+        
+            return "The supernova remnant is added successfully."
+        
+        except:
+            return "The provided supernova remnant failed to be added, kindly check the passed info and try again."
+    
 
-        queryStr = "insert into supernova_remnants values ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')"
-        
-        self._db.execute(queryStr.format(srDict["name"],
-                                         srDict["ra_time"],
-                                         srDict["ra_deg"],
-                                         srDict["dec_deg"],
-                                         srDict["fvfe"],
-                                         srDict["dist"],
-                                         srDict["remnant"]))
-        self._db.commit()
-        
-        return "The supernova remnant is added successfully."
-    
-    
-    
-    
     
     
