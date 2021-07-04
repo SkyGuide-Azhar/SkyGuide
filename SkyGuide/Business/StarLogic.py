@@ -1,14 +1,10 @@
 from SGDB_Interface import SGDB_Interface
 
-from threading   import Event, Thread
-from time        import sleep
+from threading   import Thread
 from static_vars import static_vars
 
-import requests
-
-
-ExitEvent = Event()
-IsInternetOn = False
+from NetCheck import NetCheck
+from MountCommunication import MountCommunication
 
 #-------------------------------------------------------------------------- 
 
@@ -21,29 +17,12 @@ class StarLogic():
         
         return SGDB_Interface().GetByName("stars", name)
         
-#-------------------------------------------------------------------------- 
-def NetCheck():
-    global IsInternetOn, ExitEvent
-    
-    while(True):
-        try:
-           _ = requests.get("http://www.google.com", timeout = 2)
-           IsInternetOn =  True
-           
-        except (requests.ConnectionError, requests.Timeout):
-           IsInternetOn =  False  
-           
-        finally:
-            sleep(0.1)
-            if ExitEvent.is_set():
-                break
 
 #-------------------------------------------------------------------------- 
 @static_vars(NewState = False)
 def IsDBConnectionOn():
-    global IsInternetOn
-    
-    if(IsInternetOn):   
+
+    if(NetCheck.IsInternetOn):   
         if(not IsDBConnectionOn.NewState):
             SGDB_Interface().SGDB_Connect()
             IsDBConnectionOn.NewState = True
@@ -56,15 +35,23 @@ def IsDBConnectionOn():
 def PrintByName(name):
 
     if(IsDBConnectionOn()):
-        print(StarLogic().GetByName(name))
+        printStr, RA, DEC = StarLogic().GetByName(name)
+        if(RA != None):
+            MountCommunication.RA  = RA
+            MountCommunication.DEC = DEC
+        print(printStr)
     else:
         print("Net is down")
 
 #--------------------------------------------------------------------------     
 if __name__ == "__main__":
     
-    t1 = Thread(target = NetCheck)
-    t1.start()
+    NetCheck = NetCheck()
+    
+    MountCommunication = MountCommunication()
+    
+    Thread(target = NetCheck.Check).start()
+    Thread(target = MountCommunication.SendToMount).start()
     
     while(True):
         x = input("Enter the stars name: ")
@@ -75,4 +62,5 @@ if __name__ == "__main__":
     if(IsDBConnectionOn()):    
         SGDB_Interface().SGDB_Disconnect()
     
-    ExitEvent.set()
+    NetCheck.ExitEvent.set()
+    MountCommunication.ExitEvent.set()

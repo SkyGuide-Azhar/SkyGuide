@@ -12,6 +12,7 @@ class SGDB_Interface(DB_Affiliate):
 
     def GetByName(self, tableName, objName):
         DA_Obj = SG_Utilities().FindObj(tableName)
+        RA = DEC = ""
         
         if(DA_Obj.CheckName(objName)):
             table1_Obj, table2_Obj = DA_Obj.GetByName(objName)
@@ -21,7 +22,14 @@ class SGDB_Interface(DB_Affiliate):
                 table1_Obj, table2_Obj = DA_Obj.GetByIAU(objName)
         
         else:
-            return "\n\nThe provided object name is incorrect."
+            return "\n\nThe provided object name is incorrect.", None, None
+        
+        if(tableName == "constellations"):
+            RA  = table1_Obj.GetRAStartDeg()
+            DEC = table1_Obj.GetDeclinationStart()
+        else:
+            RA  = table1_Obj.GetRADeg()
+            DEC = table1_Obj.GetDeclination()
         
         returnStr = SG_Utilities().GetObjAsStr(table1_Obj)
         
@@ -29,7 +37,7 @@ class SGDB_Interface(DB_Affiliate):
             returnStr += "--------------------------- Constellation Info --------------------------\n\n"
             returnStr += SG_Utilities().GetObjAsStr(table2_Obj)
         
-        return returnStr
+        return returnStr, RA, DEC
 
 #-----------------------------------------------------------------
 
