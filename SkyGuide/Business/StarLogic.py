@@ -6,6 +6,9 @@ from static_vars import static_vars
 from NetCheck import NetCheck
 from MountCommunication import MountCommunication
 
+UserRA  = 0
+UserDec = 0
+
 #-------------------------------------------------------------------------- 
 
 class StarLogic():
@@ -33,12 +36,13 @@ def IsDBConnectionOn():
 
 #-------------------------------------------------------------------------- 
 def PrintByName(name):
+    global UserRA, UserDec
 
     if(IsDBConnectionOn()):
         printStr, RA, DEC = StarLogic().GetByName(name)
         if(RA != None):
-            MountCommunication.RA  = RA
-            MountCommunication.DEC = DEC
+            UserRA  = RA
+            UserDec = DEC
         print(printStr)
     else:
         print("Net is down")
@@ -54,10 +58,16 @@ if __name__ == "__main__":
     Thread(target = MountCommunication.SendToMount).start()
     
     while(True):
+        
         x = input("Enter the stars name: ")
+        
         if(x == "d"):
             break
-        PrintByName(x)
+        elif(x == "send"):
+            MountCommunication.RA  = UserRA
+            MountCommunication.DEC = UserDec
+        else:
+            PrintByName(x)
     
     if(IsDBConnectionOn()):    
         SGDB_Interface().SGDB_Disconnect()

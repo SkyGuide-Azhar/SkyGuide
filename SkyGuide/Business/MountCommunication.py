@@ -1,10 +1,12 @@
 
-import serial
+from serial import Serial
+import serial.tools.list_ports as PortsList
 
 from time import sleep
 from datetime import datetime
 from requests import get
 from threading   import Event
+from static_vars import static_vars
 
 
 class MountCommunication():
@@ -15,6 +17,8 @@ class MountCommunication():
         self.DEC       = 90
         self.LST       = 0
         self.ExitEvent = Event()
+        
+        self.__ArduinoSerial = None
     
 #-----------------------------------------
 
@@ -66,13 +70,27 @@ class MountCommunication():
         self.LST = float(format(LST*15,".3f"))
     
 #-----------------------------------------
+    @static_vars(isArduinoConnected = False)
+    def __waitForConnection(self):
+        # code Abdo;
+        # do NOT move ahead from this method unless;
+        # the mount connection is established in the self.ArduinoSerial field
+        # do NOT forget to sleep in the loop of this method
+        # to enable the thread to break;
+        pass
+
+#-----------------------------------------
 
     def SendToMount(self):
         while(True): 
-            self.__updateLST()
+            
+            self.__updateLST()     
+            self.__waitForConnection()    
+            
+            # send to mount using self.ArduinoSerial field
             print(f"{self.RA},{self.DEC},{self.LST}")
             
-            sleep(5)
+            sleep(1)
             
             if self.ExitEvent.is_set():
                 break
