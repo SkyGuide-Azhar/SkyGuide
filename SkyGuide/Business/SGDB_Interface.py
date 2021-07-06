@@ -31,11 +31,10 @@ class SGDB_Interface(DB_Affiliate):
             RA  = table1_Obj.GetRADeg()
             DEC = table1_Obj.GetDeclination()
         
-        returnStr = SG_Utilities().GetObjAsStr(table1_Obj)
+        returnStr = str(table1_Obj)
         
         if(table2_Obj != None):
-            returnStr += "--------------------------- Constellation Info --------------------------\n\n"
-            returnStr += SG_Utilities().GetObjAsStr(table2_Obj)
+            returnStr += str(table2_Obj)
         
         return returnStr, RA, DEC
 

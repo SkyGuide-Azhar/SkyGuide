@@ -3,11 +3,11 @@ from SGDB_Interface import SGDB_Interface
 from threading   import Thread
 from static_vars import static_vars
 
-from NetCheck import NetCheck
+from InternetConnection import NetCheck
 from MountCommunication import MountCommunication
 
 UserRA  = 0
-UserDec = 0
+UserDec = 90
 
 #-------------------------------------------------------------------------- 
 

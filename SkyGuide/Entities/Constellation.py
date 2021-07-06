@@ -2,7 +2,25 @@ class Constellation():
     
     def __init__(self):
         pass
-    
+
+
+    def __str__(self):
+        returnStr = f"""
+--------------------------- Constellation Info --------------------------\n\n
+Name : {self.GetName()}\n\n
+IAU Abbriviation : {self.GetIAU()}\n\n
+Right ascension start in time : {self.GetRAStartTime()}\n\n
+Right ascension end in time : {self.GetRAEndTime()}\n\n
+Right ascension start in degree : {self.GetRAStartDeg()}\n\n
+Right ascension end in degree : {self.GetRAEndDeg()}\n\n
+Declination start : {self.GetDeclinationStart()}\n\n
+Declination end : {self.GetDeclinationEnd()}\n\n
+Genitive : {self.GetGenitive()}\n\n
+Meaning : {self.GetMeaning()}\n\n
+Brightest Star : {self.GetBrightestStar()}\n\n
+        """
+        return returnStr
+
     #-------------------------------------------------------------
     
     __name = None

@@ -5,7 +5,7 @@ from threading   import Event
 
 
 
-class NetCheck():
+class InternetConnection():
     
     def __init__(self):
         self.ExitEvent = Event()

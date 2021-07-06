@@ -2,7 +2,23 @@ class Star():
     
     def __init__(self):
         pass
-    
+
+
+    def __str__(self):
+        returnStr = f"""
+--------------------------- Star Info --------------------------\n\n
+Name : {self.GetName()}\n\n
+Right ascension in time : {self.GetRATime()}\n\n
+Rght ascension in degree : {self.GetRADeg()}\n\n
+Declination : {self.GetDeclination()}\n\n
+Distance : {self.GetDistance()}\n\n
+Magnitude : {self.GetMagnitude()}\n\n
+Spectrum : {self.GetSpectrum()}\n\n
+Color index : {self.GetColorIdx()}\n\n
+Bayer name : {self.GetBayerName()}\n\n
+Constellation : {self.GetConstellation()}\n\n
+        """
+        return returnStr
 #-------------------------------------------------------------
     
     __name = None

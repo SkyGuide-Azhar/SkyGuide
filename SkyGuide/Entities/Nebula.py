@@ -2,7 +2,22 @@ class Nebula():
 
     def __init__(self):
         pass
-    
+
+
+    def __str__(self):
+        returnStr = f"""
+--------------------------- Nebula Info --------------------------\n\n
+Name : {self.GetName()}\n\n
+Right ascension in time : {self.GetRATime()}\n\n
+Right ascension in degree : {self.GetRADeg()}\n\n
+Declination : {self.GetDeclination()}\n\n
+Distance : {self.GetDistance()}\n\n
+Dimensions : {self.GetDimensions()}\n\n
+Radius : {self.GetRadius()}\n\n
+Constellation : {self.GetConstellation()}\n\n
+        """
+        return returnStr
+
     #------------------------------------------
     
     __name = None
