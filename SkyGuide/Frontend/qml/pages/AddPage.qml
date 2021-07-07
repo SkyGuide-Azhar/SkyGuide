@@ -63,7 +63,7 @@ Rectangle
                 font.italic: false
                 font.family: "Times New Roman"
                 font.pointSize: 15
-                color:"#000000"
+                color:"#ffffffff"
                 text: itemComboBox.currentText
             }
 
@@ -77,7 +77,7 @@ Rectangle
 
             background: Rectangle
             {
-                color: "#64aafa"
+                color: "#00000000"
                 border.color: "#688888"
                 radius: 10
             }

@@ -9,16 +9,14 @@ class SearchObject():
     #---------------------------------------------------
 
     def GetSearchResult(self, objType, objName):
-        try:
-            searchResult, RA, DEC = self.__SGDB_Interface.GetByName(objType, objName)
-        except:
-            searchResult, RA, DEC = "Couldn't search for the provided object!", None, None
-        finally:
-            if(RA == None):
-                searchStatus = False
-            else:
-                searchStatus = True
 
-            return searchResult, searchStatus, RA, DEC
+        searchResult, RA, DEC = self.__SGDB_Interface.GetByName(objType, objName)
+
+        if(RA == None):
+            searchStatus = False
+        else:
+            searchStatus = True
+
+        return searchResult, searchStatus, RA, DEC
 
 

@@ -27,12 +27,7 @@ class AddObject:
         star.SetBayerName(bayer)
         star.SetConstellation(con)
 
-        try:
-            returnStr = self.__SGDB_Interface.AddNew("stars",star)
-        except:
-            returnStr = "An error accured while adding the provided star information"
-        finally:
-            return returnStr
+        return self.__SGDB_Interface.AddNew("stars",star)
 
     #-----------Nebulas--------------------
     def AddUserNebula(self, name, ra_time, dec_deg, dist, dimensions, radius, con):
@@ -47,12 +42,7 @@ class AddObject:
         nebula.SetRadius(radius)
         nebula.SetConstellation(con)
 
-        try:
-            returnStr = self.__SGDB_Interface.AddNew("nebulas",nebula)
-        except:
-            returnStr = "An error accured while adding the provided nebula information"
-        finally:
-            return returnStr
+        return self.__SGDB_Interface.AddNew("nebulas",nebula)
 
     #-----------Supernova Remnants---------
     def AddUserSupernovaRemnant(self, name, ra_time, dec_deg, dist, fvfe, remnant):
@@ -66,9 +56,4 @@ class AddObject:
         supernovaRemnant.SetDistance(fvfe)
         supernovaRemnant.SetRemnant(remnant)
 
-        try:
-            returnStr = self.__SGDB_Interface.AddNew("supernova_remnants",supernovaRemnant)
-        except:
-            returnStr = "An error accured while adding the provided supernova remnant information"
-        finally:
-            return returnStr
+        return self.__SGDB_Interface.AddNew("supernova_remnants",supernovaRemnant)

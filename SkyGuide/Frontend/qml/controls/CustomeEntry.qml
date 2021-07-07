@@ -62,13 +62,13 @@ Rectangle
 
 
         placeholderText: txtFieldTxt
-        placeholderTextColor: "#ffffff"
+        placeholderTextColor: "#9c9c9c"
 
         background: Rectangle
         {
             anchors.fill: parent
 
-            border.color:"#ffffff"
+            border.color:"#838383"
 
             color: "#2c313c"
             radius: 8

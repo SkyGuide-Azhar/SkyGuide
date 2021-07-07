@@ -1,3 +1,4 @@
+
 from Backend.DataAccessLayer.StarsDA             import StarsDA
 from Backend.DataAccessLayer.SolarSysDA          import SolarSysDA
 from Backend.DataAccessLayer.NebulasDA           import NebulasDA
@@ -60,12 +61,47 @@ class SG_Utilities():
     
     
     def RATimeToDeg(self, raTime):
-        hours = float(raTime[:raTime.index("h")])
-        mins  = float(raTime[raTime.index("h")+1:raTime.index("m")].strip())
-        secs  = float(raTime[raTime.index("m")+1:raTime.index("s")].strip())
-        
-        degStr = str(hours*15 + mins*(1/4) + secs*(1/240))
-        return degStr[:degStr.index(".")+5]
+        raDeg = ""
+
+        try:
+            hours = float(raTime[:raTime.index("h")])
+            mins  = float(raTime[raTime.index("h")+1:raTime.index("m")].strip())
+            secs  = float(raTime[raTime.index("m")+1:raTime.index("s")].strip())
+
+            if((0 <= hours < 24) and (0 <= mins < 60) and (0 <= secs < 60)):
+                degStr = str(hours*15 + mins*(1/4) + secs*(1/240))
+                raDeg = degStr[:degStr.index(".")+5]
+        except:
+            pass
+        finally:
+            return raDeg
+
+#__________________________________________________________________________________
+
+    def __tryParseToFloat(self, num):
+        try:
+            float(num)
+            return True
+        except:
+            return False
+
+#__________________________________________________________________________________
+    def RA_DEC_Check(self, RA, DEC):
+        returnBool = False
+        raDeg      = self.RATimeToDeg(RA)
+
+        if(self.__tryParseToFloat(DEC) and (-90.0 <= float(DEC) <= 90.0)):
+            DEC = float(DEC)
+
+            if(self.__tryParseToFloat(RA) and (0.0 <= float(RA) < 360.0)):
+                RA = float(RA)
+                returnBool = True
+            elif(raDeg != ""):
+                RA = raDeg
+                returnBool = True
+
+        return returnBool, RA, DEC
+
 
 
 

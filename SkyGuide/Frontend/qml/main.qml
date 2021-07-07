@@ -304,25 +304,23 @@ Window
 
                     onClicked:
                     {
-                        if(internetConnected)
+                        homeSearchSep.visible = false
+                        searchExploreSep.visible = false
+                        exploreAddSep.visible = true
+                        addHelpSep.visible = true
+
+                        homeBtn.btnDefaultColor = topAreaRec.color
+                        searchInDBbtn.btnDefaultColor = bgRec.color
+                        exploreBtn.btnDefaultColor = topAreaRec.color
+                        addToDBbtn.btnDefaultColor = topAreaRec.color
+                        helpBtn.btnDefaultColor = topAreaRec.color
+
+                        if(currectPage != "search")
                         {
-                            homeSearchSep.visible = false
-                            searchExploreSep.visible = false
-                            exploreAddSep.visible = true
-                            addHelpSep.visible = true
-
-                            homeBtn.btnDefaultColor = topAreaRec.color
-                            searchInDBbtn.btnDefaultColor = bgRec.color
-                            exploreBtn.btnDefaultColor = topAreaRec.color
-                            addToDBbtn.btnDefaultColor = topAreaRec.color
-                            helpBtn.btnDefaultColor = topAreaRec.color
-
-                            if(currectPage != "search")
-                            {
-                                pagesStackView.push(Qt.resolvedUrl("pages/SearchPage.qml"))
-                                currectPage = "search"
-                            }
+                            pagesStackView.push(Qt.resolvedUrl("pages/SearchPage.qml"))
+                            currectPage = "search"
                         }
+
                     }
 
                 }
@@ -359,8 +357,7 @@ Window
 
                     onClicked:
                     {
-                        if(!isFirstLoad)
-                        {
+
                             homeSearchSep.visible = true
                             searchExploreSep.visible = false
                             exploreAddSep.visible = false
@@ -376,7 +373,6 @@ Window
                                 pagesStackView.push(Qt.resolvedUrl("pages/ExplorePage.qml"))
                                 currectPage = "explore"
                             }
-                        }
                     }
 
                 }
@@ -415,8 +411,6 @@ Window
 
                     onClicked:
                     {
-                        if(internetConnected)
-                        {
                             homeSearchSep.visible = true
                             searchExploreSep.visible = true
                             exploreAddSep.visible = false
@@ -433,7 +427,6 @@ Window
                                 pagesStackView.push(Qt.resolvedUrl("pages/AddPage.qml"))
                                 currectPage = "Add"
                             }
-                        }
                     }
 
                 }
@@ -713,30 +706,6 @@ Window
             function onInternetConnected(connected)
             {
                 internetConnected = connected
-                if(!internetConnected)
-                {
-                    if(currectPage != "explore")
-                    {
-                        homeSearchSep.visible = false
-                        searchExploreSep.visible = true
-                        exploreAddSep.visible = true
-                        addHelpSep.visible = true
-
-                        homeBtn.btnDefaultColor = bgRec.color
-                        searchInDBbtn.btnDefaultColor = topAreaRec.color
-                        exploreBtn.btnDefaultColor = topAreaRec.color
-                        addToDBbtn.btnDefaultColor = topAreaRec.color
-                        helpBtn.btnDefaultColor = topAreaRec.color
-
-                        if(currectPage != "home")
-                        {
-                            pagesStackView.push(Qt.resolvedUrl("pages/HomePage.qml"))
-                            currectPage = "home"
-                        }
-                    }
-                }
-                else if(isFirstLoad)
-                    isFirstLoad = false
             }
 
         }

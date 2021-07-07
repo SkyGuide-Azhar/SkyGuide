@@ -50,7 +50,6 @@ Rectangle
 
 
 
-
             displayText:""
 
             onCurrentTextChanged:
@@ -97,7 +96,7 @@ Rectangle
                 font.family: "Times New Roman"
                 font.pointSize: 15
 
-                color:"#000000"
+                color:"#ffffffff"
                 text: itemComboBox.currentText
             }
 
@@ -113,7 +112,8 @@ Rectangle
 
             background: Rectangle
             {
-                color: "#64aafa"
+                color: "#00000000"
+
                 border.color: "#688888"
                 radius: 10
             }
@@ -167,13 +167,13 @@ Rectangle
         anchors.topMargin: 30
 
         placeholderText: qsTr("enter the object's name")
-        placeholderTextColor: "#ffffff"
+        placeholderTextColor: "#838383"
 
         background: Rectangle
         {
             anchors.fill: parent
 
-            border.color:"#ffffff"
+            border.color:"#838383"
 
             color: "#2c313c"
             radius: 10
@@ -235,10 +235,16 @@ Rectangle
                    {
                        "Unfortunately, The entered solar system object is not in SkyGuide database."
                    }
+                   else if (isNetDown)
+                   {
+                       "Internet connection is needed to perform the search."+"\n\n"
+                       +"Kindly check your internet connection and try again."
+                   }
+
                    else
                    {
-                       "This "+ itemComboBox.currentText +" is not in SkyGuide database;"+"\n\n"
-                     +"Go to the Add page to add a new item to SkyGuide database."
+                       "This "+ itemComboBox.currentText +" is not in SkyGuide database."+"\n\n"
+                     +"You can navigate to the Add page to add a new item to SkyGuide database."
                    }
 
             anchors.verticalCenter: parent.verticalCenter
@@ -272,6 +278,11 @@ Rectangle
             btnImage: "../../images/svg_images/telescope.svg"
             btnTxt: "Send to mount"
             font.pointSize: 13
+
+            onClicked:
+            {
+                backend.sendToMount_Search()
+            }
         }
 
         Rectangle
@@ -318,6 +329,7 @@ Rectangle
 
             }
         }
+        property bool isNetDown: false
         Connections
         {
             target: backend
@@ -327,12 +339,19 @@ Rectangle
                 sendToMountBtn.visible = searchStatus
 
                 resultRec.visible = searchStatus
+
                 notFoundRec.visible = !searchStatus
             }
 
             function onSearchResult(searchResult)
             {
                 scrollText.text = searchResult
+
+                if(searchResult === "Net is down")
+                    isNetDown = true
+                else
+                    isNetDown = false
+
             }
         }
 
