@@ -8,7 +8,7 @@ Window
 {
     id: mainWindow
     x: 250
-    y: 50
+    y: 30
     visible: true
     title: qsTr("Sky Guide")
     color: "#00000000"
@@ -44,6 +44,104 @@ Window
         anchors.leftMargin: bgMargin
         anchors.bottomMargin: bgMargin
         anchors.topMargin: bgMargin
+
+        Rectangle
+        {
+            id: bottomRec
+            radius: 10
+
+            width: 200
+            height: 30
+
+            color: "#182027"
+
+
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            anchors.rightMargin: 0
+            anchors.leftMargin: 0
+            anchors.bottomMargin: 0
+
+            Image
+            {
+                id: resizeCornnerImage
+
+                anchors.right: parent.right
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                anchors.rightMargin: 0
+                anchors.bottomMargin: 0
+                anchors.topMargin: 0
+
+                visible: !maximizeBtn.isWindowMaximized
+
+                horizontalAlignment: Image.AlignRight
+                verticalAlignment: Image.AlignBottom
+
+                source: "../images/svg_images/resize_icon.svg"
+
+                fillMode: Image.PreserveAspectFit
+                antialiasing: false
+
+                /* Cornner Resize */
+                MouseArea
+                {
+                    id: resizeCornner
+                    anchors.fill: parent
+
+                    cursorShape: Qt.SizeFDiagCursor
+                    DragHandler
+                    {
+                        onActiveChanged: if(active && !maximizeBtn.isWindowMaximized)
+                                             mainWindow.startSystemResize(Qt.RightEdge | Qt.BottomEdge)
+                    }
+                }
+            }
+
+            Label {
+                id: label
+                width: 150
+                color: "#ffffff"
+                text: qsTr("@SkyGuide-Azhar")
+                anchors.left: parent.left
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                verticalAlignment: Text.AlignVCenter
+                font.italic: true
+                font.pointSize: 10
+                anchors.leftMargin: 0
+                anchors.bottomMargin: 0
+                anchors.topMargin: 0
+            }
+
+            Rectangle
+            {
+                id: connectionRec
+                x: 542
+                width: 200
+                color: "#00000000"
+
+                visible: true
+
+                anchors.right: resizeCornnerImage.left
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                anchors.rightMargin: 0
+                anchors.bottomMargin: 0
+                anchors.topMargin: 0
+
+                ConnectionRec
+                {
+                    color: "#00000000"
+                    anchors.fill: parent
+
+                    connectionState: internetConnected
+
+                }
+
+            }
+        }
 
         Rectangle
         {
@@ -491,102 +589,6 @@ Window
 
         }
 
-        Rectangle
-        {
-            id: bottomRec
-            radius: 10
-
-            width: 200
-            height: 20
-
-            color: "#273139"
-
-
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.bottom: parent.bottom
-            anchors.rightMargin: 0
-            anchors.leftMargin: 0
-            anchors.bottomMargin: 0
-
-            Image
-            {
-                id: resizeCornnerImage
-
-                anchors.right: parent.right
-                anchors.top: parent.top
-                anchors.bottom: parent.bottom
-                anchors.rightMargin: 0
-                anchors.bottomMargin: 0
-                anchors.topMargin: 0
-
-                visible: !maximizeBtn.isWindowMaximized
-
-                horizontalAlignment: Image.AlignRight
-                verticalAlignment: Image.AlignBottom
-
-                source: "../images/svg_images/resize_icon.svg"
-
-                fillMode: Image.PreserveAspectFit
-                antialiasing: false
-
-                /* Cornner Resize */
-                MouseArea
-                {
-                    id: resizeCornner
-                    anchors.fill: parent
-
-                    cursorShape: Qt.SizeFDiagCursor
-                    DragHandler
-                    {
-                        onActiveChanged: if(active && !maximizeBtn.isWindowMaximized)
-                                             mainWindow.startSystemResize(Qt.RightEdge | Qt.BottomEdge)
-                    }
-                }
-            }
-
-            Label {
-                id: label
-                width: 150
-                color: "#ffffff"
-                text: qsTr("@SkyGuide-Azhar")
-                anchors.left: parent.left
-                anchors.top: parent.top
-                anchors.bottom: parent.bottom
-                verticalAlignment: Text.AlignVCenter
-                font.italic: true
-                font.pointSize: 10
-                anchors.leftMargin: 0
-                anchors.bottomMargin: 0
-                anchors.topMargin: 0
-            }
-
-            Rectangle
-            {
-                id: connectionRec
-                x: 542
-                width: 200
-                color: "#00000000"
-
-                visible: true
-
-                anchors.right: resizeCornnerImage.left
-                anchors.top: parent.top
-                anchors.bottom: parent.bottom
-                anchors.rightMargin: 0
-                anchors.bottomMargin: 0
-                anchors.topMargin: 0
-
-                ConnectionRec
-                {
-                    anchors.fill: parent
-
-                    connectionState: internetConnected
-
-                }
-
-            }
-        }
 
         Rectangle
         {

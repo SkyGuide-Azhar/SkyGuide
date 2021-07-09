@@ -9,21 +9,26 @@ from Backend.BusinessLayer.BluetoothConnection import BluetoothConnection
 class MountCommunication():
     
     def __init__(self):
-        self.longitude = 0
-        self.RA        = 0
-        self.DEC       = 90
+        self.longitude = 30.0566
+        self.latitude  = 31.2358
         self.LST       = 0
+        self.RA        = 0
+        self.updatedRA = 0
+        self.DEC       = 90
         self.ExitEvent = Event()
         
-        self.BTConnection = BluetoothConnection(9600)
+        self.BTConnection = BluetoothConnection(baudRate = 9600, comPort = "COM3")
     
 #-----------------------------------------
 
-    def __getLongitude(self):        
-        response  = get("https://ipinfo.io/")
+    def __getLocation(self):
+        print(f"{self.longitude}  {self.latitude}")
+        response  = get("https://ipinfo.io/", timeout=1)
         longitude = response.json()["loc"].split(",")[1]
+        latitude  = response.json()["loc"].split(",")[0]
        
         self.longitude = float(longitude)
+        self.latitude  = float(latitude)
 
 #-----------------------------------------
 
@@ -39,7 +44,8 @@ class MountCommunication():
         minutes = todayDT.minute
         
         if(not self.longitude):    
-            self.__getLongitude()
+            self.__getLocation()
+        print(f"{self.longitude}  {self.latitude}")
         
         #------------------ Calculations ---------------------
         
@@ -66,25 +72,43 @@ class MountCommunication():
             
         self.LST = float(format(LST*15,".3f"))
 
-#-----------------------------------------
+    #-----------------------------------------
+
+    def __updateRA(self):
+
+        self.__updateLST()
+        if(self.latitude > 0):
+            if (self.LST>180):
+                self.updatedRA = self.RA + (360.0 - self.LST)
+            else:
+                self.updatedRA = self.RA - self.LST
+        else:
+            if (self.LST>180):
+                self.updatedRA = self.RA - (360 - self.LST)
+            else:
+                self.updatedRA = self.RA + self.LST
+
+    #-----------------------------------------
 
     def SendToMount(self):
-        while(True): 
+        while(True):
             try:
                 if self.ExitEvent.is_set():
                     break
-                serialStr = f"{self.RA},{self.DEC},{self.LST}"
-                self.__updateLST()
-                self.BTConnection.ConnectBT()
-                self.BTConnection.Send(serialStr)
-                data = self.BTConnection.Recieve()
-                # send to mount using self.ArduinoSerial field
-                print(data)
 
-                sleep(1)
+                self.__updateRA()
+                self.BTConnection.ConnectBT()
+
+                strRA , strDEC = format(self.updatedRA,".3f"), format(self.DEC,".3f")
+                self.BTConnection.Send( f"{strRA},{strDEC}" )
+                print( f"{strRA},{strDEC}" )
+                if(len(self.BTConnection.Recieve())):
+                    self.BTConnection.DisconnectBT()
+                sleep(3)
 
             except:
-                pass
+                self.BTConnection.DisconnectBT()
+                sleep(5)
 
         self.BTConnection.DisconnectBT()
     

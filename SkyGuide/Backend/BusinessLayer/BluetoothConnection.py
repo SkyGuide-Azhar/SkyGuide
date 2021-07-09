@@ -1,36 +1,18 @@
 from serial import Serial
-import serial.tools.list_ports as PortsList
 from time import sleep
 
 class BluetoothConnection():
-    def __init__(self, baudRate):
-        self.__port = ""
+    def __init__(self, baudRate, comPort):
+        self.__port = comPort
         self.__isBTConnected = False
         self.__BT = None
         self.__baudRate = baudRate
 
 #------------------------------------------------------
 
-    def __checkForBluetooth(self):
-        ports = list(PortsList.comports())
-        for p in ports:
-            if (not "Bluetooth" in p.description):
-                ports.remove(p)
-        if (len(ports)):
-            if (len(ports) > 1):
-                self.__port = ports[1].name
-            else:
-                self.__port = ports[0].name
-        else:
-            self.__isBTConnected = False
-
-#------------------------------------------------------
-
     def ConnectBT(self):
-        self.__checkForBluetooth()
-        if(not self.__isBTConnected):
-            self.__BT = Serial(port=self.__port, baudrate=self.__baudRate, timeout=.1)
-            self.__isBTConnected = True
+        self.__BT = Serial(port=self.__port, baudrate=self.__baudRate, timeout=.1)
+        self.__isBTConnected = True
 
 # ------------------------------------------------------
 
@@ -42,9 +24,12 @@ class BluetoothConnection():
 
     def Recieve(self):
         data = ""
+        i = 0
         if (self.__isBTConnected):
-            while (not len(data)):
+            while ((not len(data)) and (i < 3)):
                 data = self.__BT.readline()
+                i += 1
+                sleep(1)
         return data.decode('utf-8')
 
 # ------------------------------------------------------

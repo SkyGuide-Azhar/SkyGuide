@@ -6,18 +6,17 @@ class Constellation():
 
     def __str__(self):
         returnStr = f"""
---------------------------- Constellation Info --------------------------\n\n
-Name : {self.GetName()}\n\n
-IAU Abbriviation : {self.GetIAU()}\n\n
-Right ascension start in time : {self.GetRAStartTime()}\n\n
-Right ascension end in time : {self.GetRAEndTime()}\n\n
-Right ascension start in degree : {self.GetRAStartDeg()}\n\n
-Right ascension end in degree : {self.GetRAEndDeg()}\n\n
-Declination start : {self.GetDeclinationStart()}\n\n
-Declination end : {self.GetDeclinationEnd()}\n\n
-Genitive : {self.GetGenitive()}\n\n
-Meaning : {self.GetMeaning()}\n\n
-Brightest Star : {self.GetBrightestStar()}\n\n
+Name : {self.GetName()}\n
+IAU Abbriviation : {self.GetIAU()}\n
+Right ascension start in time : {self.GetRAStartTime()}\n
+Right ascension end in time : {self.GetRAEndTime()}\n
+Right ascension start in degree : {self.GetRAStartDeg()}\n
+Right ascension end in degree : {self.GetRAEndDeg()}\n
+Declination start : {self.GetDeclinationStart()}\n
+Declination end : {self.GetDeclinationEnd()}\n
+Genitive : {self.GetGenitive()}\n
+Meaning : {self.GetMeaning()}\n
+Brightest Star : {self.GetBrightestStar()}\n
         """
         return returnStr
 

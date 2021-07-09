@@ -13,8 +13,11 @@ class DB_Connection:
         
         
     def SGDB_Connect(self):
-        self.db = mysql.connector.connect(host     = "blsprj9kvpcmrjmnpalh-mysql.services.clever-cloud.com",
-                                          user     = "ujssc4bzehkf9pu8",
-                                          passwd   = "o9hGS7tBabkfZlgruG6Q",
-                                          database = "blsprj9kvpcmrjmnpalh")
-        self.cr = self.db.cursor()
+        try:
+            self.db = mysql.connector.connect(host     = "blsprj9kvpcmrjmnpalh-mysql.services.clever-cloud.com",
+                                              user     = "ujssc4bzehkf9pu8",
+                                              passwd   = "o9hGS7tBabkfZlgruG6Q",
+                                              database = "blsprj9kvpcmrjmnpalh")
+            self.cr = self.db.cursor()
+        except:
+            pass

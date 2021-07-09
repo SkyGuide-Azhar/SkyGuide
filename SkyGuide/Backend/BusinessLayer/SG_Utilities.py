@@ -70,7 +70,7 @@ class SG_Utilities():
 
             if((0 <= hours < 24) and (0 <= mins < 60) and (0 <= secs < 60)):
                 degStr = str(hours*15 + mins*(1/4) + secs*(1/240))
-                raDeg = degStr[:degStr.index(".")+5]
+                raDeg = float(degStr[:degStr.index(".")+5])
         except:
             pass
         finally:
