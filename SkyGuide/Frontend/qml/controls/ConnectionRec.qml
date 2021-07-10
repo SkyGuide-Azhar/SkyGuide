@@ -20,8 +20,8 @@ Rectangle
         anchors.bottom: parent.bottom
         source: "../../images/svg_images/wi-fi.svg"
         anchors.leftMargin: 35
-        anchors.bottomMargin: 0
-        anchors.topMargin: 0
+        anchors.bottomMargin: 2
+        anchors.topMargin: 2
         fillMode: Image.PreserveAspectFit
 
         ColorOverlay
@@ -32,6 +32,10 @@ Rectangle
                        "#ff0000"
             anchors.fill: parent
             source: connectionImage
+            anchors.rightMargin: 0
+            anchors.leftMargin: 0
+            anchors.bottomMargin: 0
+            anchors.topMargin: 0
             antialiasing: false
 
         }
@@ -65,6 +69,6 @@ Rectangle
 
 /*##^##
 Designer {
-    D{i:0;autoSize:true;formeditorZoom:3;height:20;width:200}
+    D{i:0;autoSize:true;formeditorZoom:3;height:20;width:200}D{i:3;locked:true}
 }
 ##^##*/

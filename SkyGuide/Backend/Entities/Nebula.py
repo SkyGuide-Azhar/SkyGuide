@@ -6,15 +6,15 @@ class Nebula():
 
     def __str__(self):
         returnStr = f"""
---------------------------- Nebula Info --------------------------\n\n
-Name : {self.GetName()}\n\n
-Right ascension in time : {self.GetRATime()}\n\n
-Right ascension in degree : {self.GetRADeg()}\n\n
-Declination : {self.GetDeclination()}\n\n
-Distance : {self.GetDistance()}\n\n
-Dimensions : {self.GetDimensions()}\n\n
+Name : {self.GetName()}\n
+Right ascension in time : {self.GetRATime()}\n
+Right ascension in degree : {self.GetRADeg()}\n
+Declination : {self.GetDeclination()}\n
+Distance : {self.GetDistance()}\n
+Dimensions : {self.GetDimensions()}\n
 Radius : {self.GetRadius()}\n\n
 Constellation : {self.GetConstellation()}\n\n
+--------------------------- Constellation Info --------------------------\n
         """
         return returnStr
 

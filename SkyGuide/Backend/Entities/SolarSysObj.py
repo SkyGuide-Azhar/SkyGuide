@@ -6,19 +6,19 @@ class SolarSysObj():
 
     def __str__(self):
         returnStr = f"""
---------------------------- Solar System Object Info --------------------------\n\n
-Name : {self.GetName()}\n\n
-Right ascension in time : {self.GetRATime()}\n\n
-Right ascension in degree : {self.GetRADeg()}\n\n
-Declination : {self.GetDeclination()}\n\n
-Distance : {self.GetDistance()}\n\n
-Magnitude : {self.GetMagnitude()}\n\n
-Mass : {self.GetMass()}\n\n
-Density : {self.GetDensity()}\n\n
-Escape Velocity : {self.GetEscapeVelocity()}\n\n
-Diameter : {self.GetDiameter()}\n\n
-Sideral Rotation : {self.GetSideralRotation()}\n\n
+Name : {self.GetName()}\n
+Right ascension in time : {self.GetRATime()}\n
+Right ascension in degree : {self.GetRADeg()}\n
+Declination : {self.GetDeclination()}\n
+Distance : {self.GetDistance()}\n
+Magnitude : {self.GetMagnitude()}\n
+Mass : {self.GetMass()}\n
+Density : {self.GetDensity()}\n
+Escape Velocity : {self.GetEscapeVelocity()}\n
+Diameter : {self.GetDiameter()}\n
+Sideral Rotation : {self.GetSideralRotation()}\n
 Constellation : {self.GetConstellation()}\n\n
+--------------------------- Constellation Info --------------------------\n
         """
         return returnStr
     #------------------------------------------

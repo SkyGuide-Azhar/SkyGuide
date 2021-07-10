@@ -6,14 +6,13 @@ class SupernovaRemnant():
 
     def __str__(self):
         returnStr = f"""
---------------------------- Supernova Remnant Info --------------------------\n\n
-Name : {self.GetName()}\n\n
-Right ascension in time : {self.GetRATime()}\n\n
-Right ascension in degree : {self.GetRADeg()}\n\n
-Declination : {self.GetDeclination()}\n\n
-Distance : {self.GetDistance()}\n\n
-First Visible From Earth : {self.GetFVFE()}\n\n
-Remnant : {self.GetRemnant()}\n\n
+Name : {self.GetName()}\n
+Right ascension in time : {self.GetRATime()}\n
+Right ascension in degree : {self.GetRADeg()}\n
+Declination : {self.GetDeclination()}\n
+Distance : {self.GetDistance()}\n
+First Visible From Earth : {self.GetFVFE()}\n
+Remnant : {self.GetRemnant()}
         """
         return  returnStr
 

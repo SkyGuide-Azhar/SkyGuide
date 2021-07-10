@@ -269,7 +269,7 @@ Rectangle
             anchors.top: resultRec.bottom
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottomMargin: 5
+            anchors.bottomMargin: 20
 
             btnImageWidth: 20
 
@@ -299,8 +299,8 @@ Rectangle
             anchors.bottom: parent.bottom
             anchors.rightMargin: 40
             anchors.leftMargin: 40
-            anchors.bottomMargin: 60
-            anchors.topMargin: 50
+            anchors.bottomMargin: 75
+            anchors.topMargin: 35
 
             ScrollView {
                 id: resutlScrollView
