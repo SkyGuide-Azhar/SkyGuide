@@ -2,24 +2,16 @@
 #include <MPU6050.h>
 #include <SoftwareSerial.h>
 
-//#define HALFSTEP 4
+#define RA_Stop  7
+#define RA_CW    6
+#define RA_CCW   8
 
-//// Motor pin definitions
-//#define RAMotor_IN1  2     // IN1 on the ULN2003 driver 1
-//#define RAMotor_IN2  3     // IN2 on the ULN2003 driver 1
-//#define RAMotor_IN3  4     // IN3 on the ULN2003 driver 1
-//#define RAMotor_IN4  5     // IN4 on the ULN2003 driver 1
-//
-//#define DECMotor_IN1  6     // IN1 on the ULN2003 driver 1
-//#define DECMotor_IN2  7     // IN2 on the ULN2003 driver 1
-//#define DECMotor_IN3  8     // IN3 on the ULN2003 driver 1
-//#define DECMotor_IN4  9     // IN4 on the ULN2003 driver 1
-//
-//// Initialize with pin sequence IN1-IN3-IN2-IN4 for using the AccelStepper with 28BYJ-48
-//AccelStepper RAMotor(HALFSTEP, RAMotor_IN2, RAMotor_IN4, RAMotor_IN3, RAMotor_IN1);
-//AccelStepper DECMotor(HALFSTEP, DECMotor_IN2, DECMotor_IN4, DECMotor_IN3, DECMotor_IN1);
+#define DEC_Stop 10
+#define DEC_CW   9
+#define DEC_CCW  11
 
-SoftwareSerial BTSerial(3, 4); // RX | TX
+
+SoftwareSerial BTSerial(3, 4); // RX , TX
 
 MPU6050 mpu;
 
@@ -29,34 +21,25 @@ boolean DECStopped = false;
 unsigned long timer = 0;
 float timeStep = 0.01;
 
-// Pitch and Yaw values
-double pitch, yaw;
+
+double pitch, roll;
 
 double in_DEC, in_RA;  //variable to store the user input DEC and RA
-
-const int stahp=7,stahp2=10;
-const int cw=6,cw2=9;
-const int ccw=8,ccw2=11;
 
 void setup() 
 {
     Serial.begin(115200);
     BTSerial.begin(9600);
 
-     pinMode(stahp,OUTPUT);
-    pinMode(cw,OUTPUT);
-    pinMode(ccw,OUTPUT);
-    pinMode(stahp2,OUTPUT);
-    pinMode(cw2,OUTPUT);
-    pinMode(ccw2,OUTPUT);
-  
-    //delay(5000);  //wait before starting
+    pinMode(RA_Stop,OUTPUT);
+    pinMode(RA_CW,OUTPUT);
+    pinMode(RA_CCW,OUTPUT);
+    pinMode(DEC_Stop,OUTPUT);
+    pinMode(DEC_CW,OUTPUT);
+    pinMode(DEC_CCW,OUTPUT);
     
-    while(!mpu.begin(MPU6050_SCALE_2000DPS, MPU6050_RANGE_2G))
-    {
-    Serial.println("Could not find a valid MPU6050 sensor, check wiring!");
-    delay(500);
-    }
+    while(!mpu.begin(MPU6050_SCALE_2000DPS, MPU6050_RANGE_2G))delay(500);
+	
     mpu.calibrateGyro();
     mpu.setThreshold(3);
 }
@@ -69,17 +52,12 @@ void loop()
     timer = millis();
     Vector norm = mpu.readNormalizeGyro();
   
-    //I've put the sensor with a 90 degree angle on the setup due to
-    //cable connection problems. Because of that the data values from the mpu6050 chip are
-    //different in this case:
-    //roll data(X-axis) is pitch.
-    //pitch data(Y-axis) is yaw.
 
-    yaw = yaw + norm.YAxis * timeStep;
+    roll  = roll + norm.YAxis * timeStep;
     pitch = pitch + norm.XAxis * timeStep;
  
-    Serial.print(" Yaw = ");
-    Serial.print(yaw);
+    Serial.print(" roll = ");
+    Serial.print(roll);
     Serial.print(" Pitch = ");
     Serial.println(pitch);
 
@@ -92,22 +70,12 @@ void loop()
     Serial.print(" DEC = ");
     Serial.println(in_DEC);
 
-//    if(RAStopped==false)
-        
-//        
-//    if(DECStopped==false)
-//        DECMotor.run();
-
-    //Serial.println((timeStep*1000) - (millis() - timer));
     delay(abs((timeStep*1000) - (millis() - timer)));//timer for the gyro. 
 }
 
 
 void recvdata()
-{
-  //This function receives data from serial as (0.00,0.00)
-  //splits it to strings by the comma ","
-  //then converts them to doubles 
+{ 
     Serial.println(BTSerial.available());
     if (BTSerial.available())
     {
@@ -134,46 +102,42 @@ void recvdata()
 }
 
 
-void DecCheck() // DEC
+void DecCheck()
 { 
 
-    if(floor(pitch*100) == floor(in_DEC*100))
-    {
-        digitalWrite(stahp2,HIGH);
-        }else{
-        digitalWrite(stahp2,LOW);
-    }
-    if(floor(pitch*100) < floor(in_DEC*100)){
-        digitalWrite(cw2,HIGH);
-        }else{
-        digitalWrite(cw2,LOW);
-    }
-    if(floor(pitch*100) > floor(in_DEC*100)){
-        digitalWrite(ccw2,HIGH);
-        }else{
-        digitalWrite(ccw2,LOW);
-        }
+    if(floor(pitch) == floor(in_DEC))
+        digitalWrite(DEC_Stop,HIGH);
+    else
+        digitalWrite(DEC_Stop,LOW);
+    
+    if(floor(pitch) < floor(in_DEC))
+        digitalWrite(DEC_CW,HIGH);
+    else
+        digitalWrite(DEC_CW,LOW);
+    
+    if(floor(pitch) > floor(in_DEC))
+        digitalWrite(DEC_CCW,HIGH);
+    else
+        digitalWrite(DEC_CCW,LOW);
+        
 }
 
 
-void RACheck() // RA
+void RACheck()
 { 
 
+    if(floor(roll) == floor(in_RA))
+        digitalWrite(RA_Stop,HIGH);
+	else
+        digitalWrite(RA_Stop,LOW);
 
-    if(floor(yaw*100) == floor(in_RA*100))
-    {
-        digitalWrite(stahp,HIGH);
-        }else{
-        digitalWrite(stahp,LOW);
-    }
-    if(floor(yaw*100) < floor(in_RA*100)){
-        digitalWrite(cw,HIGH);
-        }else{
-        digitalWrite(cw,LOW);
-    }
-    if(floor(yaw*100) > floor(in_RA*100)){
-        digitalWrite(ccw,HIGH);
-        }else{
-        digitalWrite(ccw,LOW);
-        }
+    if(floor(roll) < floor(in_RA))
+        digitalWrite(RA_CW,HIGH);
+	else
+        digitalWrite(RA_CW,LOW);
+	
+    if(floor(roll) > floor(in_RA))
+        digitalWrite(RA_CCW,HIGH);
+	else
+        digitalWrite(RA_CCW,LOW);
 }

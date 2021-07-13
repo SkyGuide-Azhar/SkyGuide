@@ -9,8 +9,8 @@ from Backend.BusinessLayer.BluetoothConnection import BluetoothConnection
 class MountCommunication():
     
     def __init__(self):
-        self.longitude = 30.0566
-        self.latitude  = 31.2358
+        self.longitude = 0#31.470
+        self.latitude  = 0#30.03
         self.LST       = 0
         self.RA        = 0
         self.updatedRA = 0
@@ -22,7 +22,6 @@ class MountCommunication():
 #-----------------------------------------
 
     def __getLocation(self):
-        print(f"{self.longitude}  {self.latitude}")
         response  = get("https://ipinfo.io/", timeout=1)
         longitude = response.json()["loc"].split(",")[1]
         latitude  = response.json()["loc"].split(",")[0]
@@ -45,7 +44,6 @@ class MountCommunication():
         
         if(not self.longitude):    
             self.__getLocation()
-        print(f"{self.longitude}  {self.latitude}")
         
         #------------------ Calculations ---------------------
         
