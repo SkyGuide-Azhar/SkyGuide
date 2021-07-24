@@ -12,11 +12,21 @@ Rectangle
     {
         id: tmpLabel
         text: "Help Page"
-        color: "#ffffff"
+        color: "#ababab"
         anchors.verticalCenter: parent.verticalCenter
+        horizontalAlignment: Text.AlignLeft
+        verticalAlignment: Text.AlignVCenter
+        font.bold: true
+        font.family: "Times New Roman"
         font.pointSize: 40
         anchors.horizontalCenter: parent.horizontalCenter
 
 
     }
 }
+
+/*##^##
+Designer {
+    D{i:0;autoSize:true;height:480;width:640}
+}
+##^##*/

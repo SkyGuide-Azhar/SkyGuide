@@ -12,28 +12,32 @@ from PySide2.QtCore import QObject, Slot, Signal
 
 
 if __name__ == "__main__":
+    try:
 
-    app = QGuiApplication(sys.argv)
-    engine = QQmlApplicationEngine()
+        app = QGuiApplication(sys.argv)
+        engine = QQmlApplicationEngine()
 
-    engine.load(os.path.join(os.path.dirname(__file__), "Frontend\qml\main.qml"))
+        engine.load(os.path.join(os.path.dirname(__file__), "Frontend\qml\main.qml"))
 
-    main = SkyGuideApp()
+        main = SkyGuideApp()
 
-    Thread(target = main.InternetCheck).start()
-    Thread(target = main.mountCommunication.SendToMount).start()
+        Thread(target = main.InternetCheck).start()
+        Thread(target = main.mountCommunication.SendToMount).start()
 
-    engine.rootContext().setContextProperty("backend", main)
+        engine.rootContext().setContextProperty("backend", main)
 
-    if not engine.rootObjects():
-        sys.exit(-1)
+        if not engine.rootObjects():
+            sys.exit(-1)
 
-    isAppExecEnded = app.exec_()
+        isAppExecEnded = app.exec_()
 
-    if(not isAppExecEnded):
-        if(main.netConnection.IsInternetOn):
-            main.SGDB_Interface.SGDB_Disconnect()
-        main.ExitEvent.set()
-        main.mountCommunication.ExitEvent.set()
+        if(not isAppExecEnded):
+            main.ExitEvent.set()
+            main.mountCommunication.ExitEvent.set()
 
-    sys.exit(isAppExecEnded)
+            if(main.netConnection.IsInternetOn):
+                main.SGDB_Interface.SGDB_Disconnect()
+
+        sys.exit(isAppExecEnded)
+    except:
+        pass
