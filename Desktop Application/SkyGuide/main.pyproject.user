@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.14.2, 2021-07-14T17:16:40. -->
+<!-- Written by QtCreator 4.14.2, 2021-08-05T20:45:01. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -93,7 +93,7 @@
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">qt.qt5.5152.win64_mingw81_kit</value>
    <value type="int" key="ProjectExplorer.Target.ActiveBuildConfiguration">-1</value>
    <value type="int" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
-   <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">1</value>
+   <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
    <value type="int" key="ProjectExplorer.Target.BuildConfigurationCount">0</value>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.DeployConfiguration.0">
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
@@ -169,16 +169,16 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">AddObject</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.E:/0_Gam3a/4th Year Data/000 - Project/SkyGuideRepo/SkyGuide/Backend/ApplicationLayer/AddObject.py</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">E:/0_Gam3a/4th Year Data/000 - Project/SkyGuideRepo/SkyGuide/Backend/ApplicationLayer/AddObject.py</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">main2</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.E:/0_Gam3a/4th Year Data/000 - Project/SkyGuideRepo/Sky Guide/Desktop Application/SkyGuide/main.py</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">E:/0_Gam3a/4th Year Data/000 - Project/SkyGuideRepo/Sky Guide/Desktop Application/SkyGuide/main.py</value>
     <value type="QString" key="PythonEditor.RunConfiguation.Interpreter">{87a6d947-d816-417a-a5d0-90469186632f}</value>
-    <value type="QString" key="PythonEditor.RunConfiguation.Script">E:\0_Gam3a\4th Year Data\000 - Project\SkyGuideRepo\SkyGuide\Backend\ApplicationLayer\AddObject.py</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Script">E:\0_Gam3a\4th Year Data\000 - Project\SkyGuideRepo\Sky Guide\Desktop Application\SkyGuide\main.py</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">E:/0_Gam3a/4th Year Data/000 - Project/SkyGuideRepo/SkyGuide/Backend/ApplicationLayer</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">E:/0_Gam3a/4th Year Data/000 - Project/SkyGuideRepo/Sky Guide/Desktop Application/SkyGuide</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.1">
     <value type="QString" key="Analyzer.Perf.CallgraphMode">dwarf</value>
@@ -241,16 +241,16 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">main</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.E:/0_Gam3a/4th Year Data/000 - Project/SkyGuideRepo/SkyGuide/main.py</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">E:/0_Gam3a/4th Year Data/000 - Project/SkyGuideRepo/SkyGuide/main.py</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">SearchObject2</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.E:/0_Gam3a/4th Year Data/000 - Project/SkyGuideRepo/Sky Guide/Desktop Application/SkyGuide/Backend/ApplicationLayer/SearchObject.py</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">E:/0_Gam3a/4th Year Data/000 - Project/SkyGuideRepo/Sky Guide/Desktop Application/SkyGuide/Backend/ApplicationLayer/SearchObject.py</value>
     <value type="QString" key="PythonEditor.RunConfiguation.Interpreter">{87a6d947-d816-417a-a5d0-90469186632f}</value>
-    <value type="QString" key="PythonEditor.RunConfiguation.Script">E:\0_Gam3a\4th Year Data\000 - Project\SkyGuideRepo\SkyGuide\main.py</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Script">E:\0_Gam3a\4th Year Data\000 - Project\SkyGuideRepo\Sky Guide\Desktop Application\SkyGuide\Backend\ApplicationLayer\SearchObject.py</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">E:/0_Gam3a/4th Year Data/000 - Project/SkyGuideRepo/SkyGuide</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">E:/0_Gam3a/4th Year Data/000 - Project/SkyGuideRepo/Sky Guide/Desktop Application/SkyGuide/Backend/ApplicationLayer</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.2">
     <value type="QString" key="Analyzer.Perf.CallgraphMode">dwarf</value>
@@ -313,16 +313,16 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">SearchObject</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.E:/0_Gam3a/4th Year Data/000 - Project/SkyGuideRepo/SkyGuide/Backend/ApplicationLayer/SearchObject.py</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">E:/0_Gam3a/4th Year Data/000 - Project/SkyGuideRepo/SkyGuide/Backend/ApplicationLayer/SearchObject.py</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">AddObject2</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.E:/0_Gam3a/4th Year Data/000 - Project/SkyGuideRepo/Sky Guide/Desktop Application/SkyGuide/Backend/ApplicationLayer/AddObject.py</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">E:/0_Gam3a/4th Year Data/000 - Project/SkyGuideRepo/Sky Guide/Desktop Application/SkyGuide/Backend/ApplicationLayer/AddObject.py</value>
     <value type="QString" key="PythonEditor.RunConfiguation.Interpreter">{87a6d947-d816-417a-a5d0-90469186632f}</value>
-    <value type="QString" key="PythonEditor.RunConfiguation.Script">E:\0_Gam3a\4th Year Data\000 - Project\SkyGuideRepo\SkyGuide\Backend\ApplicationLayer\SearchObject.py</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Script">E:\0_Gam3a\4th Year Data\000 - Project\SkyGuideRepo\Sky Guide\Desktop Application\SkyGuide\Backend\ApplicationLayer\AddObject.py</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">E:/0_Gam3a/4th Year Data/000 - Project/SkyGuideRepo/SkyGuide/Backend/ApplicationLayer</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">E:/0_Gam3a/4th Year Data/000 - Project/SkyGuideRepo/Sky Guide/Desktop Application/SkyGuide/Backend/ApplicationLayer</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.3">
     <value type="QString" key="Analyzer.Perf.CallgraphMode">dwarf</value>
@@ -385,16 +385,16 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">SkyGuideApp</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.E:/0_Gam3a/4th Year Data/000 - Project/SkyGuideRepo/SkyGuide/Backend/ApplicationLayer/SkyGuideApp.py</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">E:/0_Gam3a/4th Year Data/000 - Project/SkyGuideRepo/SkyGuide/Backend/ApplicationLayer/SkyGuideApp.py</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">SkyGuideApp2</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.E:/0_Gam3a/4th Year Data/000 - Project/SkyGuideRepo/Sky Guide/Desktop Application/SkyGuide/Backend/ApplicationLayer/SkyGuideApp.py</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">E:/0_Gam3a/4th Year Data/000 - Project/SkyGuideRepo/Sky Guide/Desktop Application/SkyGuide/Backend/ApplicationLayer/SkyGuideApp.py</value>
     <value type="QString" key="PythonEditor.RunConfiguation.Interpreter">{87a6d947-d816-417a-a5d0-90469186632f}</value>
-    <value type="QString" key="PythonEditor.RunConfiguation.Script">E:\0_Gam3a\4th Year Data\000 - Project\SkyGuideRepo\SkyGuide\Backend\ApplicationLayer\SkyGuideApp.py</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Script">E:\0_Gam3a\4th Year Data\000 - Project\SkyGuideRepo\Sky Guide\Desktop Application\SkyGuide\Backend\ApplicationLayer\SkyGuideApp.py</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">E:/0_Gam3a/4th Year Data/000 - Project/SkyGuideRepo/SkyGuide/Backend/ApplicationLayer</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">E:/0_Gam3a/4th Year Data/000 - Project/SkyGuideRepo/Sky Guide/Desktop Application/SkyGuide/Backend/ApplicationLayer</value>
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.RunConfigurationCount">4</value>
   </valuemap>
